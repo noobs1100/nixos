@@ -78,6 +78,11 @@
     pulseaudio
     pavucontrol
     gh
+    dunst
+    libnotify
+    networkmanagerapplet
+    bluez
+    blueman
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -106,7 +111,10 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;  
+  };
   
   #services.xserver.enable = true;
   #services.xserver.displaymanager.sddm.enable = false;
@@ -116,21 +124,28 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-  
-  #services.getty.autologinUser = "krut";
+    
+
+  hardware.bluetooth.enable = true;  
+ 
 
   services.xserver.enable = true;
   services.xserver.displayManager.startx.enable = true; 
   services.getty.autologinUser = "krut";
   # Seatd (wayland seat management)
   services.seatd.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   programs.waybar.enable = true;
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji    
+    nerd-fonts.jetbrains-mono
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
+
+  
 
 }
