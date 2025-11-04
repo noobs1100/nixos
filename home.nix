@@ -8,15 +8,18 @@
   programs.zsh.enable = true;
   programs.git = {
     enable = true;
-    userName = "noobs1100";
-    userEmail = "noobg43213@gmail.com";
+    # userName = "noobs1100";
+    # userEmail = "noobg43213@gmail.com";
   };
+
+  # home.file.".config/git/config".source = null;
 
   home.packages = with pkgs; [
     neovim
     htop
     wget
     git
+    gh
   ];
 
   # Example environment variable

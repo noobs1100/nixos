@@ -6,6 +6,7 @@
     
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # waybar.url = "github:Alexays/Waybar/master";
     # use the following for unstable:
     # nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -30,6 +31,7 @@
           inherit pkgs;
           modules = [ ./home.nix ];
         };
-      };    
+      };
+    
     };
 }
