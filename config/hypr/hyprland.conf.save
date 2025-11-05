@@ -56,7 +56,7 @@ exec-once = cliphist store
 exec-once = copyq
 exec-once = wl-paste --type text --watch cliphist store
 exec-once = wl-paste --type image --watch cliphist store
-exec-once = swaybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF"
+exec-once = exec swaybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF"
 #############################
 ### ENVIRONMENT VARIABLES ###
 #############################

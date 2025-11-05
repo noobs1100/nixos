@@ -36,7 +36,7 @@
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.swayidle.enable = true; # idle management daemon
   services.polkit-gnome.enable = true; # polkit
-  services.hyprpaper.enable = true;
+#  services.hyprpaper.enable = true;
 #  services.hyprpaper.settings = {
 #  
 #    ipc = "on";
