@@ -68,9 +68,6 @@
     kitty
     firefox
     wofi
-    rofi
-    wl-clipboard
-    wl-clipboard-x11
     nwg-look
     neofetch
     waybar
@@ -82,6 +79,7 @@
     pavucontrol
     gh
     libnotify
+    networkmanagerapplet
     bluez
     blueman
     util-linux
@@ -90,16 +88,6 @@
     hunspellDicts.uk_UA
     unzip
     vscode
-    # clipboard stuff
-    wl-clipboard
-    cliphist
-    wl-clip-persist
-    copyq
-    # screenshot
-    hyprshot
-    grim
-    slurp
-    swappy
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -142,8 +130,7 @@
     wireplumber.enable = true;
   };
     
-  services.blueman.enable = true;
-  services.dbus.enable = true;
+
   hardware.bluetooth.enable = true;  
  
 

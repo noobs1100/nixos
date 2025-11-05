@@ -30,7 +30,14 @@
     enable = true;
   };
 
-  # home.file.".config/git/config".source = null;
+  programs.alacritty.enable = true; # Super+T in the default setting (terminal)
+  programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
+  programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
+  programs.waybar.enable = true; # launch on startup in the default setting (bar)
+  services.swayidle.enable = true; # idle management daemon
+  services.polkit-gnome.enable = true; # polkit
+
+
 
   home.packages = with pkgs; [
     neovim
@@ -51,11 +58,12 @@
     swaynotificationcenter
     wlogout
     hyprlock
+    swaybg
   ];
 
   # Example environment variable
-  home.file.".config/hypr".source = /home/krut/nixconfig/config/hypr;
-  home.file.".config/waybar".source = /home/krut/nixconfig/config/waybar;
-  home.file.".config/wlogout".source = /home/krut/nixconfig/config/wlogout;
+  # home.file.".config/hypr".source = /home/krut/nixconfig/config/hypr;
+  # home.file.".config/waybar".source = /home/krut/nixconfig/config/waybar;
+  # home.file.".config/wlogout".source = /home/krut/nixconfig/config/wlogout;
 
 }

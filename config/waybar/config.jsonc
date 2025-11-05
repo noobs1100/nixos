@@ -17,13 +17,19 @@
 
     "modules-right": [
         "custom/sep",
+        "custom/swaync",
+        "custom/sep",
         "network",
+        "custom/sep",
+        "custom/bluetooth",
         "custom/sep",
         "cpu",
         "custom/sep",
         "memory",
         "custom/sep",
         "disk",
+        "custom/sep",
+        "battery",
         "custom/sep",
         "clock",
         "custom/sep",
@@ -86,5 +92,19 @@
     "custom/sep": {
         "format" : "|",
         "interval" : 0
+    },
+    "custom/swaync": {
+    "format": "", // bell icon
+    "tooltip": false,
+    "on-click": "swaync-client -t -sw", // toggle notification center
+    "on-click-right": "swaync-client -C", // clear all
+    "on-click-middle": "swaync-client -d", // do-not-disturb toggle
+    "interval": 10
+    },
+    "custom/bluetooth": {
+    "format": " {status}",
+    "exec": "bluetoothctl show | grep 'Powered: yes' >/dev/null && echo 'On' || echo 'Off'",
+    "on-click": "blueman-manager", // or `bluetoothctl power toggle`
+    "interval": 5
     }
 }
