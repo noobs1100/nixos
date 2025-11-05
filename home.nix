@@ -20,6 +20,7 @@
   profileExtra = ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
           exec hyprland & waybar
+          exec waybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF" 
       fi
     '';
     
