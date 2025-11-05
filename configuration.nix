@@ -83,6 +83,7 @@
     networkmanagerapplet
     bluez
     blueman
+    util-linux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -130,9 +131,10 @@
  
 
   services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true; 
-  services.getty.autologinUser = "krut";
+  # services.xserver.displayManager.startx.enable = true; 
+  # services.getty.autologinUser = "krut";
   # Seatd (wayland seat management)
+  services.displayManager.ly.enable = true;
   services.seatd.enable = true;
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -145,7 +147,7 @@
     nerd-fonts.jetbrains-mono
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
-
+  services.hypridle.enable = true;
   
 
 }
