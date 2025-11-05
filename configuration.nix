@@ -166,5 +166,5 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
   services.hypridle.enable = true;
   programs.niri.enable = true;  
-
+  services.tailscale.enable = true;
 }

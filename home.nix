@@ -36,8 +36,21 @@
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.swayidle.enable = true; # idle management daemon
   services.polkit-gnome.enable = true; # polkit
-
-
+  services.hyprpaper.enable = true;
+#  services.hyprpaper.settings = {
+#  
+#    ipc = "on";
+#    splash = false;
+#    splash_offset = 2.0;
+#
+#    preload =
+#      [ "~/nixconfig/wall/train.png" ];
+#
+#    wallpaper = [
+#      ",~/nixconfig/wall/train.png"
+#    ];
+#
+#  };
 
   home.packages = with pkgs; [
     neovim
