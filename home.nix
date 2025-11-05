@@ -19,7 +19,7 @@
     };
   profileExtra = ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-          exec hyprland & waybar & swaybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF"
+          exec hyprland 
       fi
     '';
     
@@ -41,15 +41,15 @@
   Unit = {
     Description = "Wayland wallpaper daemon";
     PartOf = [ "graphical-session.target" ];
-    After = [ "graphical-session.target" ];
+   After = [ "graphical-session.target" ];
   };
   
   Service = {
-    ExecStart = ''${pkgs.swaybg}/bin/swaybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF"'';
+    ExecStart = ''${pkgs.swaybg}/bin/swaybg -i /home/krut/nixconfig/wall/train.png -m fit -c "#90D5FF"'';
     Restart = "on-failure";
   };
   
-  Install.WantedBy = [ "hyprland-session.target" ];
+  Install.WantedBy = [ "graphical-session.target" ];
 };
 
   
