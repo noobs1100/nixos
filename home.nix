@@ -62,8 +62,8 @@
   ];
 
   # Example environment variable
-  # home.file.".config/hypr".source = /home/krut/nixconfig/config/hypr;
-  # home.file.".config/waybar".source = /home/krut/nixconfig/config/waybar;
-  # home.file.".config/wlogout".source = /home/krut/nixconfig/config/wlogout;
+  home.file.".config/hypr".source = ./config/hypr;
+  home.file.".config/waybar".source = ./config/waybar;
+  home.file.".config/wlogout".source = ./config/wlogout;
 
 }

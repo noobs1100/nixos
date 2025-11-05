@@ -4,7 +4,6 @@
     "position": "top", 
     "height": 30, 
     "spacing": 4, 
-
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
@@ -14,14 +13,13 @@
     ],
     "modules-center": [
     ],
-
     "modules-right": [
-        "custom/sep",
-        "custom/swaync",
         "custom/sep",
         "network",
         "custom/sep",
-        "custom/bluetooth",
+        "bluetooth",
+        "custom/sep",
+        "battery",
         "custom/sep",
         "cpu",
         "custom/sep",
@@ -29,13 +27,12 @@
         "custom/sep",
         "disk",
         "custom/sep",
-        "battery",
-        "custom/sep",
         "clock",
+        "custom/sep",
+        "custom/notification",
         "custom/sep",
         "tray"
     ],
-
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -53,10 +50,6 @@
     "tray": {
         // "icon-size": 21,
         "spacing": 10
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
     },
     "clock": {
         "format-alt": "{:%Y-%m-%d}"
@@ -79,32 +72,51 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "Bat: {capacity}% {icon} {time}",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "Bat {capacity}%",
-        "format-time": "{H}:{M}",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}, {capacity}%"
+    },
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "format-connected-battery": "󰂱 {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager",
+        "on-click-right": "bash -c 'if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'"
     },
     "network": {
         "format": "Online",
         "format-disconnected": "Disconnected ⚠"
     },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󰂚 <span foreground='red'><sup></sup></span>",
+            "none": "󰂚 ",
+            "dnd-notification": "󰂛  <span foreground='red'><sup></sup></span>",
+            "dnd-none": "󰂛 ",
+            "inhibited-notification": "󰂚 <span foreground='red'><sup></sup></span>",
+            "inhibited-none": "󰂚 ",
+            "dnd-inhibited-notification": "󰂛 <span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": "󰂛 "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
     "custom/sep": {
         "format" : "|",
         "interval" : 0
-    },
-    "custom/swaync": {
-    "format": "", // bell icon
-    "tooltip": false,
-    "on-click": "swaync-client -t -sw", // toggle notification center
-    "on-click-right": "swaync-client -C", // clear all
-    "on-click-middle": "swaync-client -d", // do-not-disturb toggle
-    "interval": 10
-    },
-    "custom/bluetooth": {
-    "format": " {status}",
-    "exec": "bluetoothctl show | grep 'Powered: yes' >/dev/null && echo 'On' || echo 'Off'",
-    "on-click": "blueman-manager", // or `bluetoothctl power toggle`
-    "interval": 5
     }
 }
