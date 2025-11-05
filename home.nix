@@ -19,8 +19,7 @@
     };
   profileExtra = ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-          exec hyprland & waybar
-          exec waybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF" 
+          exec hyprland & waybar & swaybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF"
       fi
     '';
     
@@ -37,22 +36,23 @@
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.swayidle.enable = true; # idle management daemon
   services.polkit-gnome.enable = true; # polkit
-#  services.hyprpaper.enable = true;
-#  services.hyprpaper.settings = {
-#  
-#    ipc = "on";
-#    splash = false;
-#    splash_offset = 2.0;
-#
-#    preload =
-#      [ "~/nixconfig/wall/train.png" ];
-#
-#    wallpaper = [
-#      ",~/nixconfig/wall/train.png"
-#    ];
-#
-#  };
 
+  systemd.user.services.swaybg = {
+  Unit = {
+    Description = "Wayland wallpaper daemon";
+    PartOf = [ "graphical-session.target" ];
+    After = [ "graphical-session.target" ];
+  };
+  
+  Service = {
+    ExecStart = ''${pkgs.swaybg}/bin/swaybg -i ~/nixconfig/wall/train.png -m fit -c "#90D5FF"'';
+    Restart = "on-failure";
+  };
+  
+  Install.WantedBy = [ "hyprland-session.target" ];
+};
+
+  
   home.packages = with pkgs; [
     neovim
     htop
