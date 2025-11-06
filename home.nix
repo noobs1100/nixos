@@ -79,5 +79,6 @@
   home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/waybar".source = ./config/waybar;
   home.file.".config/wlogout".source = ./config/wlogout;
+  home.file.".vimrc".source = ./config/vim/vimrc;
 
 }

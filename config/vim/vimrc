@@ -1,0 +1,3 @@
+source ~/nixconfig/config/vim/vim.vim
+source ~/nixconfig/config/vim/keybinds.vim
+
