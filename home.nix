@@ -33,29 +33,17 @@
   programs.alacritty.enable = true; # Super+T in the default setting (terminal)
   programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
-  programs.waybar.enable = true; # launch on startup in the default setting (bar)
+  # programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.swayidle.enable = true; # idle management daemon
   services.polkit-gnome.enable = true; # polkit
 
-  systemd.user.services.swaybg = {
-  Unit = {
-    Description = "Wayland wallpaper daemon";
-    PartOf = [ "graphical-session.target" ];
-   After = [ "graphical-session.target" ];
-  };
   
-  Service = {
-    ExecStart = ''${pkgs.swaybg}/bin/swaybg -i /home/krut/nixconfig/wall/train.png -m fit -c "#90D5FF"'';
-    Restart = "on-failure";
-  };
-  
-  Install.WantedBy = [ "graphical-session.target" ];
-};
 
   
   home.packages = with pkgs; [
     neovim
     htop
+    nnn   
     wget
     git
     gh
