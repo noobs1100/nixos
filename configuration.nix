@@ -66,6 +66,15 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
+  nix.gc = {
+    automatic = true;        # Enable automatic GC
+    dates = "weekly";        # Schedule (can be "daily", "weekly", "monthly", or cron syntax)
+    options = "--delete-older-than 7d";  # GC options
+  };
+
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -174,4 +183,6 @@
   services.hypridle.enable = true;
   programs.niri.enable = true;  
   services.tailscale.enable = true;
+  powerManagement.powertop.enable = true;
+  # services.xserver.windowManager.i3.enable = true;
 }
