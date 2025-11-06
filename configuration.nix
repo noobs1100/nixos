@@ -21,6 +21,13 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "@reboot sleep 10 && exec swaybg -i /home/krut/nixconfig/wall/train.png -m fit -c '#90D5FF' &"
+    ];
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
 
