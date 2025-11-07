@@ -9,7 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
+  # security 
+  security.sudo.wheelNeedsPassword = false;
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = false;
@@ -18,9 +19,13 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
+      configurationLimit = 1;
     };
     efi.canTouchEfiVariables = true;
+    
   };
+  boot.initrd.compressor = "zstd";
+  boot.initrd.compressorArgs = ["-19" "-T0"];
   networking.hostName = "nixos"; # Define your hostname.
 
 
@@ -63,30 +68,30 @@
     packages = with pkgs; [];
   };
   nixpkgs.config.allowUnfree = true;
-
   nix.gc = {
     automatic = true;        # Enable automatic GC
     dates = "weekly";        # Schedule (can be "daily", "weekly", "monthly", or cron syntax)
     options = "--delete-older-than 7d";  # GC options
   };
 
-
-
   environment.systemPackages = with pkgs; [
     vim 
     wget
     git
     kitty
-    firefox
-    wofi
     rofi
     wl-clipboard
     wl-clipboard-x11
-    nwg-look
     neofetch
-    
+    # browser  
     brave
+    firefox
+    # filemanager
+    nautilus
     pcmanfm
+    # polybar 
+    polybar
+
     networkmanagerapplet
     brightnessctl
     pulseaudio
@@ -96,6 +101,7 @@
     bluez
     blueman
     util-linux
+    # personal software
     libreoffice-qt
     hunspell
     hunspellDicts.uk_UA
@@ -107,22 +113,21 @@
     wl-clip-persist
     copyq
     # screenshot
+    flameshot
     hyprshot
     grim
     slurp
     swappy
-    xwayland-satellite
   ];
 
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
-  services.cloudflare-warp.enable = true;
   system.stateVersion = "25.05"; # Did you read the comment?
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;  
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;  
+  # };
   
   services.pipewire = {
     enable = true;
@@ -134,17 +139,9 @@
   services.blueman.enable = true;
   services.dbus.enable = true;
   hardware.bluetooth.enable = true;  
- 
-
-  services.xserver.enable = true;
-  # services.xserver.displayManager.startx.enable = true; 
-  # services.getty.autologinUser = "krut";
-  # Seatd (wayland seat management)
+  services.cloudflare-warp.enable = true;
   services.displayManager.ly.enable = true;
-  services.seatd.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
+  services.tailscale.enable = true;
   # programs..enable = true;
   fonts.packages = with pkgs; [
     noto-fonts
@@ -153,9 +150,34 @@
     nerd-fonts.jetbrains-mono
  ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
-  services.hypridle.enable = true;
-  programs.niri.enable = true;  
-  services.tailscale.enable = true;
+  # programs.niri.enable = true;  
   powerManagement.powertop.enable = true;
-  # services.xserver.windowManager.i3.enable = true;
+  ####  gnome  ####
+  # services.xserver.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-apps.enable = true;
+  services.gnome.core-developer-tools.enable = false;
+  services.gnome.games.enable = false;
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+
+  ####  i3  ####
+  services.xserver = {
+    enable = true;
+
+    desktopManager = {
+      xterm.enable = false;
+    };
+   
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3status # gives you the default i3 status bar
+        i3blocks #if you are planning on using i3blocks over i3status
+     ];
+    };
+  };  
+  services.displayManager.defaultSession = "none+i3";
+
+  programs.i3lock.enable = true; #default i3 screen locker
 }
