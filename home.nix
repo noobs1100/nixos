@@ -43,9 +43,11 @@
     wlogout
   ];
   
-  #home.file.".config/hypr".source = ./config/hypr;
-  # home.file.".config/waybar".source = ./config/waybar;
-  #home.file.".config/wlogout".source = ./config/wlogout;
+  home.file.".config/i3".source = ./config/i3config/i3;
+  home.file.".config/picom".source = ./config/i3config/picom;
+  home.file.".config/wlogout".source = ./config/i3config/wlogout;
+  home.file.".config/rofi".source = ./config/i3config/rofi;
+  home.file.".config/polybar".source = ./config/i3config/polybar;
   #home.file.".vimrc".source = ./config/vim/vimrc;
   services.dunst.enable = true;
 }
