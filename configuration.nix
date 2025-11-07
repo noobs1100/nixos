@@ -19,7 +19,7 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
-      configurationLimit = 1;
+      configurationLimit = 5;
     };
     efi.canTouchEfiVariables = true;
     
@@ -94,12 +94,13 @@
     pavucontrol
     networkmanagerapplet
     brightnessctl
+    pulseaudio
     # applet
     cbatticon
     fcitx5
     pasystray
     pavucontrol
-    pnmixer
+    pamixer
     gh
     libnotify
     bluez
@@ -168,6 +169,13 @@
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
   environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+
+  services.xserver = {
+    videoDrivers = [ "intel" ];
+    deviceSection = ''
+      Option "TearFree" "true"
+    '';
+  };
 
   ####  i3  ####
   services.xserver = {
