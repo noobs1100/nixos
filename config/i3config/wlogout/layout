@@ -1,0 +1,38 @@
+
+    {
+        "label": "lock",
+        "action": "i3lock -c '022D36'",
+        "text": "Lock",
+        "keybind": "l"
+    },
+    {
+        "label": "suspend",
+        "action": "bash -c 'i3lock -c '022D36' & systemctl suspend'",
+        "text": "Suspend",
+        "keybind": "u"
+    },
+    {
+        "label": "hibernate",
+        "action": "bash -c 'i3lock -c '022D36' & systemctl hibernate'",
+        "text": "Hibernate",
+        "keybind": "h"
+    },
+    {
+        "label": "logout",
+        "action": "loginctl terminate-user $USER",
+        "text": "Logout",
+        "keybind": "e"
+    },
+    {
+        "label": "reboot",
+        "action": "systemctl reboot",
+        "text": "Reboot",
+        "keybind": "r"
+    },
+    {
+        "label": "shutdown",
+        "action": "systemctl poweroff",
+        "text": "Shutdown",
+        "keybind": "s"
+    }
+

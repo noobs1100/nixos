@@ -1,0 +1,9 @@
+
+@theme "/run/current-system/sw/share/rofi/themes/Arc-Dark.rasi"
+configuration {
+  modi: "drun,run";
+  font: "JetBrainsMono Nerd Font 10";
+  show-icons: true;
+  terminal: "alacritty";
+}
+

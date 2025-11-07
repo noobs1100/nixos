@@ -124,6 +124,7 @@
     slurp
     swappy
     wmctrl
+    font-awesome
   ];
 
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -155,7 +156,8 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji    
     nerd-fonts.jetbrains-mono
- ];
+  ];
+  fonts.fontconfig.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
   # programs.niri.enable = true;  
   powerManagement.powertop.enable = true;
