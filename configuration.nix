@@ -91,17 +91,22 @@
     pcmanfm
     # polybar 
     polybar
-
+    pavucontrol
     networkmanagerapplet
     brightnessctl
-    pulseaudio
+    # applet
+    cbatticon
+    fcitx5
+    pasystray
     pavucontrol
+    pnmixer
     gh
     libnotify
     bluez
     blueman
     util-linux
     # personal software
+    tmux
     libreoffice-qt
     hunspell
     hunspellDicts.uk_UA
@@ -118,6 +123,7 @@
     grim
     slurp
     swappy
+    wmctrl
   ];
 
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -139,6 +145,7 @@
   services.blueman.enable = true;
   services.dbus.enable = true;
   hardware.bluetooth.enable = true;  
+  # services.blueman.enable = true;
   services.cloudflare-warp.enable = true;
   services.displayManager.ly.enable = true;
   services.tailscale.enable = true;
@@ -180,4 +187,6 @@
   services.displayManager.defaultSession = "none+i3";
 
   programs.i3lock.enable = true; #default i3 screen locker
+  services.picom.enable = true;
+  
 }
