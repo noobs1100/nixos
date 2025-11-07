@@ -77,7 +77,7 @@
     wl-clipboard-x11
     nwg-look
     neofetch
-    waybar
+    
     brave
     pcmanfm
     networkmanagerapplet
@@ -110,7 +110,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
-
+  services.cloudflare-warp.enable = true;
   system.stateVersion = "25.05"; # Did you read the comment?
   programs.hyprland = {
     enable = true;
@@ -138,13 +138,13 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  # programs.waybar.enable = true;
+  # programs..enable = true;
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji    
     nerd-fonts.jetbrains-mono
-  ];
+ ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
   services.hypridle.enable = true;
   programs.niri.enable = true;  

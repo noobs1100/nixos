@@ -46,6 +46,8 @@
     nnn   
     wget
     git
+    grim
+    slurp
     gh
     foot
     wlogout
