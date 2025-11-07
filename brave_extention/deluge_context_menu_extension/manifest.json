@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Deluge Context Menu Adder",
+  "version": "1.0",
+  "description": "Right-click magnet links and add to Deluge via JSON-RPC (choose Movies or TV Shows).",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html"
+}

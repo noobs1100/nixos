@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Add to Deluge (JSON-RPC)",
+  "description": "Right-click a magnet link and add it to your Deluge client via JSON-RPC.",
+  "version": "1.0",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Add to Deluge \u2014 Settings"
+  },
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

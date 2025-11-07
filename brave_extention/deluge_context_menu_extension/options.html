@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Deluge Context Menu — Options</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 16px; max-width: 640px; }
+    label { display:block; margin-top:8px; }
+    input[type=text], input[type=password] { width:100%; padding:8px; margin-top:4px; box-sizing: border-box; }
+    button { margin-top:12px; padding:8px 12px; }
+    .hint { color: #555; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h2>Deluge Context Menu — Options</h2>
+  <p class="hint">Set the Deluge Web JSON-RPC URL and password. Example URL: <code>http://192.168.1.10:8112</code></p>
+
+  <label for="deluge_url">Deluge JSON-RPC base URL (without /json)</label>
+  <input id="deluge_url" type="text" placeholder="http://localhost:8112" />
+
+  <label for="deluge_password">Deluge password (leave blank if none)</label>
+  <input id="deluge_password" type="password" placeholder="password" />
+
+  <button id="save">Save</button>
+  <button id="test">Test Connection</button>
+
+  <p id="status"></p>
+
+  <script src="options.js"></script>
+</body>
+</html>

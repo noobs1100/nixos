@@ -1,0 +1,29 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Add to Deluge — Settings</title>
+    <style>
+      body { font-family: Arial, sans-serif; width: 300px; padding: 12px; }
+      label { display:block; margin-top:8px; font-weight:600; }
+      input[type="text"], input[type="password"] { width:100%; box-sizing:border-box; padding:6px; }
+      button { margin-top:10px; padding:8px 12px; }
+      .hint { font-size:12px; color:#666; margin-top:6px; }
+    </style>
+  </head>
+  <body>
+    <h3>Add to Deluge</h3>
+    <label>Deluge JSON-RPC URL</label>
+    <input id="serverUrl" type="text" placeholder="http://192.168.1.10:8112/json" />
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Deluge web password" />
+    <label>Default download path (optional)</label>
+    <input id="downloadPath" type="text" placeholder="/downloads" />
+    <div class="hint">Right-click a magnet link and choose "Add to Deluge".</div>
+    <button id="save">Save</button>
+    <button id="test" style="margin-left:6px">Test Connection</button>
+    <div id="status" style="margin-top:8px"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
