@@ -38,9 +38,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id blueman-applet
 # exec_always --no-startup-id pkill pnmixer
 # exec_always --no-startup-id pnmixer
+exec --no-startup-id ibus-daemon -drx
 
-exec_always --no-startup-id pkill fcitx5
-exec_always --no-startup-id sleep 2 && fcitx5
+#exec_always --no-startup-id pkill fcitx5
+#exec_always --no-startup-id sleep 2 && fcitx5 &
 exec_always --no-startup-id pkill pasystray
 exec_always --no-startup-id sleep 2 && pasystray 
 exec --no-startup-id picom --config ~/.config/picom/picom.conf &
@@ -73,6 +74,7 @@ bindsym Shift+Print exec flameshot gui -c -p ~/Pictures/Screenshots
 
 # Active window screenshot (copy to clipboard)
 bindsym Ctrl+Print exec flameshot window -c -p ~/Pictures/Screenshots
+bindsym $mod+b exec --no-startup-id ~/nixconfig/config/i3config/scripts/brave3.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -220,3 +222,5 @@ bindsym $mod+r mode "resize"
 #  }
 
 for_window [class=".*"] border pixel 1
+assign [class="Brave-browser"] 3
+

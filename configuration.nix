@@ -22,13 +22,14 @@
       configurationLimit = 5;
     };
     efi.canTouchEfiVariables = true;
-    
+    timeout = 2; 
   };
   boot.initrd.compressor = "zstd";
   boot.initrd.compressorArgs = ["-19" "-T0"];
   networking.hostName = "nixos"; # Define your hostname.
+  services.power-profiles-daemon.enable = false;
 
-
+  zramSwap.enable = true;
   services.cron = {
     enable = true;
     systemCronJobs = [
@@ -37,7 +38,7 @@
   };
 
   networking.networkmanager.enable = true;
-
+  systemd.services.NetworkManager-wait-online.enable = false;
   time.timeZone = "Asia/Kolkata";
 
   i18n.defaultLocale = "en_IN";
@@ -53,6 +54,12 @@
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
   };
+  environment.variables = {
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
+  };
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -126,6 +133,13 @@
     swappy
     wmctrl
     font-awesome
+    fcitx5-m17n
+    fcitx5-configtool
+    ibus-engines.m17n
+    ibus
+    # m17n-db
+    # m17n-lib
+    powertop
   ];
 
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -143,13 +157,17 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-    
+  services.hardware.bolt.enable = false;  
   services.blueman.enable = true;
   services.dbus.enable = true;
   hardware.bluetooth.enable = true;  
   # services.blueman.enable = true;
   services.cloudflare-warp.enable = true;
-  services.displayManager.ly.enable = true;
+  # services.displayManager.ly.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "krut";
+
   services.tailscale.enable = true;
   # programs..enable = true;
   fonts.packages = with pkgs; [
@@ -157,6 +175,7 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji    
     nerd-fonts.jetbrains-mono
+    noto-fonts-extra
   ];
   fonts.fontconfig.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
