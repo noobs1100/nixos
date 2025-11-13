@@ -67,7 +67,29 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.canon-capt ];
+    browsing = true;
+    allowFrom = [ "all" ];
+    listenAddresses = [ "*:631" ];  # listen on all interfaces
+    defaultShared = true;  
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;             # allows mDNS (.local) resolution
+    publish = {
+      enable = true;
+      userServices = true;      # advertise CUPS printers via AirPrint
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      workstation = true;
+    };
+  };
+
+ # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.krut = {
     isNormalUser = true;
     description = "krut";
@@ -90,6 +112,7 @@
     wl-clipboard
     wl-clipboard-x11
     neofetch
+    feh
     # browser  
     brave
     firefox
@@ -142,7 +165,7 @@
     powertop
   ];
 
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 631 5353 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
   system.stateVersion = "25.05"; # Did you read the comment?
@@ -150,7 +173,10 @@
   #   enable = true;
   #   xwayland.enable = true;  
   # };
-  
+
+  programs.localsend.enable = true;
+  programs.localsend.openFirewall = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;

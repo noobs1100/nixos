@@ -221,6 +221,6 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 #  }
 
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 0
 assign [class="Brave-browser"] 3
 
