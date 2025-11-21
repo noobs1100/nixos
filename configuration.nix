@@ -60,6 +60,16 @@
     XMODIFIERS = "@im=ibus";
   };
 
+  services.tlp = {
+    enable = true;
+
+    # AC charge thresholds
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 70;   # Start charging when below 40%
+      STOP_CHARGE_THRESH_BAT0 = 80;   # Stop charging at 80%
+    };
+  };
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -78,7 +88,8 @@
 
   services.avahi = {
     enable = true;
-    nssmdns = true;             # allows mDNS (.local) resolution
+    nssmdns4 = true;
+    openFirewall = true;# allows mDNS (.local) resolution
     publish = {
       enable = true;
       userServices = true;      # advertise CUPS printers via AirPrint
@@ -163,9 +174,16 @@
     # m17n-db
     # m17n-lib
     powertop
+    kdePackages.kio-extras 
+    sshfs
+    davfs2
   ];
 
-  networking.firewall.allowedTCPPorts = [ 631 5353 ];
+  networking.firewall.allowedUDPPorts = [ 1714 1764 ];
+
+  services.davfs2.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 631 5353 1714 1764 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
   system.stateVersion = "25.05"; # Did you read the comment?
@@ -173,6 +191,10 @@
   #   enable = true;
   #   xwayland.enable = true;  
   # };
+  #programs.kdeconnect = {
+  #  enable = true;
+  #  package = pkgs.kdePackages.kdeconnect-kde; # ensure full features
+  #};
 
   programs.localsend.enable = true;
   programs.localsend.openFirewall = true;
