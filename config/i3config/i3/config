@@ -82,7 +82,8 @@ bindsym Mod4+v exec copyq toggle
 #bindsym Mod4+v exec --no-startup-id "pgrep copyq >/dev/null && copyq hide || copyq show"
 bindsym $mod+Shift+n exec i3lock -c '022D36'
 bindsym $mod+n exec wlogout
-bindsym $mod+space exec rofi -show run
+bindsym $mod+space exec rofi -show drun
+bindsym $mod+f exec firefox
 # Make CopyQ window always floating
 for_window [class="^Copyq$"] floating enable, move position center
 
