@@ -177,6 +177,9 @@
     kdePackages.kio-extras 
     sshfs
     davfs2
+    # other stuff 
+    wakeonlan
+    jellyfin-mpv-shim
   ];
 
   networking.firewall.allowedUDPPorts = [ 1714 1764 ];
