@@ -45,7 +45,7 @@ exec --no-startup-id ibus-daemon -drx
 exec_always --no-startup-id pkill pasystray
 exec_always --no-startup-id sleep 2 && pasystray 
 exec --no-startup-id picom --config ~/.config/picom/picom.conf &
-
+exec --no-startup-id exec jellyfin-mpv-shim
 # exec_always --no-startup-id polybar
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -88,7 +88,7 @@ bindsym $mod+Shift+f exec firefox
 for_window [class="^Copyq$"] floating enable, move position center
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show drun
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

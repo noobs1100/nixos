@@ -180,6 +180,7 @@
     # other stuff 
     wakeonlan
     jellyfin-mpv-shim
+    foliate
   ];
 
   networking.firewall.allowedUDPPorts = [ 1714 1764 ];
